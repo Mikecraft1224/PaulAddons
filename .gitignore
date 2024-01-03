@@ -1,0 +1,4 @@
+.vs
+config/*
+!config/.gitkeep
+.pytest_cache

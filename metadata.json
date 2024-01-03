@@ -1,0 +1,8 @@
+{
+  "name": "PaulAddons",
+  "creator": "Ninjune",
+  "entry": "index.js",
+  "description": "Mining utilities.",
+  "version": "1.0",
+  "requires": ["PogData", "Vigilance", "requestV2"]
+}

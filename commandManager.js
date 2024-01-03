@@ -1,0 +1,78 @@
+import settings from "./settings"
+import constants from "./util/constants"
+
+let commands = [],
+ commandNames = [],
+ helpCommands = {info: [], settings: [], waypoints: [], miscellaneous: []}
+
+
+export function registerCommand(command)
+{
+    commands.push(command)
+    commandNames.push(command.aliases[0])
+    if(command.showInHelp ?? true)
+        helpCommands[command.category].push({name: command.aliases[0], description: command.description, options: command.options})
+}
+
+export default helpCommands
+
+register("command", (...args) => {
+    stop = false
+    if (args == undefined || args[0] == undefined) { settings.openGUI(); return }
+
+    commands.forEach(command => {
+        if((command.cw ?? true) && command.aliases.includes(args[0].toString().toLowerCase()))
+        {
+            command.execute(args)
+            stop = true
+        }
+    })
+
+    if(!stop) ChatLib.chat(`${constants.PREFIX}&bUnknown command. Type "/pa help" to see all commands.`)
+}).setTabCompletions((args) => {
+    let output = []
+
+    if(args[0].length == 0 || args[0] == undefined)
+        return commandNames
+
+    if(args[1] == undefined)
+        output = findTabOutput(args[0], commandNames)
+
+    commands.forEach(command => {
+        if(command.aliases.includes(args[0].toLowerCase()) && command.subcommands != undefined)
+        {
+            for(let i = 0; i < command.subcommands.length && i <= args.length-1; i++)
+                output = findTabOutput(args[i+1], command.subcommands[i])
+        }
+    })
+
+    if(output.length == 0)
+        output = findTabOutput(args[0], commandNames)
+
+    return output
+}).setName("pa").setAliases(["pauladdons"])
+
+function findTabOutput(input, options)
+{
+    let output = []
+
+    if(input == undefined || input == "") return options
+    options.forEach(option => {
+        for(let char = 0; char < input.length; char++)
+        {
+            if(option[char] != input[char])
+                break
+            else if(char == input.length - 1)
+                output.push(option)
+        }
+    })
+
+    return output
+}
+
+// command registering (I HATE WRITING THESE)
+import "./commands/config"
+import "./commands/credits"
+import "./commands/help"
+import "./commands/move"
+import "./commands/reload"
