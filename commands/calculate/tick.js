@@ -44,7 +44,7 @@ export function findTick(speed, block)
     return ticks
 }
 
-function findStrength(block)
+export function findStrength(block)
 {
     let strength = -1
 

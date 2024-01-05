@@ -86,7 +86,7 @@ class Settings {
     // SUBCAT Stats
     @SwitchProperty({
         name: "Gemstone mining stats",
-        description: "Shows gemstone mining speed/fortune on player profile. Also shows tick that you're mining at. (set block below, hover over Professional and Fortunate in you HotM tree to load)\nReplaces Gemstone mining stats from Coleweight.",
+        description: "Shows gemstone mining speed/fortune on player profile. Also shows tick that you're mining at. (set block below, hover over Professional and Fortunate in you HotM tree to load)\nReplaces Gemstone mining stats from Coleweight.\n&cWarning: The next shown tick might not be reachable!",
         subcategory: "Stats",
         category: "Stats"
     })

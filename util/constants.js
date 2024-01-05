@@ -4,7 +4,7 @@ import settings from "../settings"
 let PogData = new PogObject("PaulAddons", {
     "professional": 0,
     "fortunate": 0,
-    "jungle_amulet": true,
+    "jungle_amulet": false,
     "coinGui": {
         "x": 0,
         "y": 0,
