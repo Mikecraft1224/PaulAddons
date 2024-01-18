@@ -2,7 +2,7 @@
   "name": "PaulAddons",
   "creator": "Mikecraft1224",
   "entry": "index.js",
-  "description": "Mining utilities.",
-  "version": "1.0.1",
+  "description": "Mining utilities and stuff.",
+  "version": "1.0.2",
   "requires": ["PogData", "Vigilance", "requestV2"]
 }

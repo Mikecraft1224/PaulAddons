@@ -2,7 +2,7 @@ import { @Vigilant, @ButtonProperty, @SwitchProperty, @SelectorProperty, @Slider
 
 @Vigilant("PaulAddons/config", "PaulAddons Settings", {
     getCategoryComparator: () => (a, b) => {
-        const categories = ["General", "Gui", "Stats"];
+        const categories = ["General", "Gui", "Stats", "Misc"];
 
         return categories.indexOf(a.name) - categories.indexOf(b.name);
     }
@@ -100,6 +100,54 @@ class Settings {
         options: ["Green Mithril", "Blue Mithril", "Ruby", "Normal gemstone (jade, amethyst, etc)", "Topaz/Opal", "Jasper"]
     })
     tickSpeedBlock = 3;
+
+    // CAT Misc
+    // SUBCAT Garden
+    @SwitchProperty({
+        name: "End of Farm Ping",
+        description: "Pings you when you reach the end of your farm.",
+        subcategory: "Garden",
+        category: "Misc"
+    })
+    endOfFarmPing = true;
+
+    @SwitchProperty({
+        name: "Use X coordinate",
+        description: "Uses the X coordinate of the ping.",
+        subcategory: "Garden",
+        category: "Misc"
+    })
+    useXCoordinate = false;
+
+    @SliderProperty({
+        name: "X coordinate",
+        description: "Sets the X coordinate of the ping. (used for both lower and higher)",
+        subcategory: "Garden",
+        category: "Misc",
+        min: 0,
+        max: 256,
+        step: 5
+    })
+    xCoordinate = 0;
+
+    @SwitchProperty({
+        name: "Use Z coordinate",
+        description: "Uses the Z coordinate of the ping.",
+        subcategory: "Garden",
+        category: "Misc"
+    })
+    useZCoordinate = false;
+
+    @SliderProperty({
+        name: "Z coordinate",
+        description: "Sets the Z coordinate of the ping. (used for both lower and higher)",
+        subcategory: "Garden",
+        category: "Misc",
+        min: 0,
+        max: 256,
+        step: 5
+    })
+    zCoordinate = 0;
 }
 
 export default new Settings()
